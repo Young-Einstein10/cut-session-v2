@@ -36,6 +36,6 @@ const ConfirmEmail = () => {
 };
 
 ConfirmEmail.isAuthPage = false;
-ConfirmEmail.name = "Confirm Email";
+// ConfirmEmail.name = "Confirm Email";
 
 export default ConfirmEmail;
