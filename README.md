@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6ff70ebb852344abb4919a4cec07d10f)](https://app.codacy.com/gh/Young-Einstein10/cut-session-v2?utm_source=github.com&utm_medium=referral&utm_content=Young-Einstein10/cut-session-v2&utm_campaign=Badge_Grade_Settings)
+
 First, run the development server:
 
 ```bash
