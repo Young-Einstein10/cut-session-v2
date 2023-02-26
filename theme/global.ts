@@ -7,10 +7,6 @@ export const styles = {
       fontSize: { base: "md", lg: "lg" },
       lineHeight: 1.5,
     },
-    "h1, h2, h3, h4": {
-      color: "primary.400",
-      fontWeight: 900,
-    },
   },
 };
 

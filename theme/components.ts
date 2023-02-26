@@ -1,11 +1,11 @@
 export const components = {
-  Link: {
-    baseStyle: {
-      _hover: {
-        textDecor: "none",
-      },
-    },
-  },
+  //   Link: {
+  //     baseStyle: {
+  //       _hover: {
+  //         textDecor: "none",
+  //       },
+  //     },
+  //   },
   Button: {
     variants: {
       normal: {

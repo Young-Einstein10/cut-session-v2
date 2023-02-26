@@ -61,22 +61,23 @@ const Register = () => {
       email: email,
       password: password,
       options: {
-        emailRedirectTo: "http://localhost:4200/dashboard",
+        emailRedirectTo: `${process.env.NEXT_SITE_URL}/dashboard/${
+          userType === USERTYPE.CLIENT ? "client" : "merchant"
+        }`,
         data: {
           ...payload,
         },
       },
     });
 
-    console.log({ data, error });
-
     if (data.user?.role === "authenticated" && !error) {
       return router.push("/confirm-email");
     }
 
     if (error) {
+      console.log(error);
       return notifyError(
-        "Sorry! An error occurred while creating your account."
+        error.message || "Sorry! An error occurred while creating your account."
       );
     }
   };

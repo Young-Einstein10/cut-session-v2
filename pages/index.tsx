@@ -1,6 +1,6 @@
 import { Heading } from "@chakra-ui/react";
 
-export default function Home() {
+const Home = () => {
   return (
     <section>
       <Heading as="h1" size="2xl">
@@ -8,4 +8,8 @@ export default function Home() {
       </Heading>
     </section>
   );
-}
+};
+
+Home.isAuthPage = false;
+
+export default Home;

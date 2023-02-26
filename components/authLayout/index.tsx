@@ -3,6 +3,8 @@ import Head from "next/head";
 import { Inter } from "@next/font/google";
 import Navbar from "./navbar";
 import Footer from "./footer";
+import { Box } from "@chakra-ui/react";
+import { footerHeight, navHeight } from "@/utils/constants";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,7 +15,7 @@ interface AuthLayoutProps {
 
 const AuthLayout = ({ title, children }: AuthLayoutProps) => {
   return (
-    <main className={inter.className}>
+    <div className={inter.className}>
       <Head>
         <title>{title}</title>
         <meta name="description" content="" />
@@ -21,9 +23,16 @@ const AuthLayout = ({ title, children }: AuthLayoutProps) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Navbar />
-      {children}
+      <Box
+        as="main"
+        maxW="container.lg"
+        mx="auto"
+        minH={`calc(100vh - (${navHeight}px + ${footerHeight}px))`}
+      >
+        {children}
+      </Box>
       <Footer />
-    </main>
+    </div>
   );
 };
 
