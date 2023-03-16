@@ -27,7 +27,8 @@ const AuthLayout = ({ title, children }: AuthLayoutProps) => {
         as="main"
         maxW="container.lg"
         mx="auto"
-        minH={`calc(100vh - (${navHeight}px + ${footerHeight}px))`}
+        py="2rem"
+        minH={`calc(100vh - (${navHeight}px))`}
       >
         {children}
       </Box>

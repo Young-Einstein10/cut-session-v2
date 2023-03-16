@@ -65,12 +65,12 @@ const Navbar = () => {
           {userType === USERTYPE.MERCHANT ? (
             <>
               <ListItem>
-                <Link href={`${router.pathname}/sessions`} passHref>
+                <Link href={`/dashboard/sessions`} passHref>
                   <ChakraLink>Sessions</ChakraLink>
                 </Link>
               </ListItem>
               <ListItem>
-                <Link href={`${router.pathname}/available-bookings`} passHref>
+                <Link href={`/dashboard/bookings`} passHref>
                   <ChakraLink>Bookings</ChakraLink>
                 </Link>
               </ListItem>
@@ -78,13 +78,13 @@ const Navbar = () => {
           ) : (
             <>
               <ListItem>
-                <Link href={`${router.pathname}/studios`} passHref>
+                <Link href={`/dashboard/client`} passHref>
                   <ChakraLink>Photo Studios</ChakraLink>
                 </Link>
               </ListItem>
 
               <ListItem>
-                <Link href={`${router.pathname}/my-bookings`} passHref>
+                <Link href={`/dashboard/my-bookings`} passHref>
                   <ChakraLink>My Bookings</ChakraLink>
                 </Link>
               </ListItem>
@@ -99,11 +99,22 @@ const Navbar = () => {
                 icon={<FaUserCircle size={30} />}
                 variant="outline"
               />
-              <MenuList minWidth={150}>
+              <MenuList minWidth={150} py={0}>
                 <Link href="/dashboard/profile" passHref>
-                  <MenuItem icon={<FaUserCircle />}>Profile</MenuItem>
+                  <MenuItem
+                    borderTopLeftRadius="md"
+                    borderTopRightRadius="md"
+                    icon={<FaUserCircle />}
+                  >
+                    Profile
+                  </MenuItem>
                 </Link>
-                <MenuItem onClick={handleLogout} icon={<MdOutlineLogout />}>
+                <MenuItem
+                  borderBottomLeftRadius="md"
+                  borderBottomRightRadius="md"
+                  onClick={handleLogout}
+                  icon={<MdOutlineLogout />}
+                >
                   Log Out
                 </MenuItem>
               </MenuList>
