@@ -21,8 +21,35 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginFormFields, loginSchema, USERTYPE } from "@/utils/schemas";
 import { Button, Input } from "@/components/shared";
 import { useRouter } from "next/router";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { Session, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { notifyError, notifySuccess } from "@/utils/toast";
+import { GetServerSideProps } from "next";
+import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  // Create authenticated Supabase Client
+  const supabase = createServerSupabaseClient(ctx);
+  // Check if we have a session
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  const userType = session?.user.user_metadata;
+
+  if (session)
+    return {
+      redirect: {
+        destination: `/dashboard/${
+          userType?.client === USERTYPE.CLIENT ? "client" : "merchant"
+        }`,
+        permanent: false,
+      },
+    };
+
+  return {
+    props: {},
+  };
+};
 
 const Login = () => {
   const router = useRouter();
@@ -38,13 +65,9 @@ const Login = () => {
   });
 
   const onSubmit = async (values: LoginFormFields) => {
-    console.log(values);
-
     const { data, error } = await supabase.auth.signInWithPassword({
       ...values,
     });
-
-    console.log({ data, error });
 
     if (data.user?.role === "authenticated" && !error) {
       const { type: userType } = data.user.user_metadata;
@@ -55,7 +78,10 @@ const Login = () => {
     }
 
     if (error) {
-      return notifyError("Sorry! An error occurred signing you in");
+      console.log(error);
+      return notifyError(
+        error.message || "Sorry! An error occurred signing you in"
+      );
     }
   };
 
